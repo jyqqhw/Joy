@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="#ffffff"
+    android:layout_height="match_parent" >
+    
+    <me.maxwin.view.XListView 
+        android:id="@+id/xlv_picture_main_show"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:divider="#ffffff"
+        android:dividerHeight="15dp"
+        android:headerDividersEnabled="true"
+        android:scrollbars="none" >
+        
+    </me.maxwin.view.XListView>
+    
+</RelativeLayout>
