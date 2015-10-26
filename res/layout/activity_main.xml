@@ -4,12 +4,12 @@
     android:layout_height="match_parent"
     tools:context="com.eebbk.joy.MainActivity" >
     
-    <LinearLayout
+    <!--LinearLayout
          android:id="@+id/ll_bottom"
          android:layout_width="match_parent"
          android:layout_height="60dp"
-         android:layout_alignParentBottom="true"
-         android:background="#a0a0ff"
+         android:layout_alignParentTop="true"
+         android:background="#333"
          android:orientation="horizontal" >
 
         <Button 
@@ -34,13 +34,30 @@
             android:layout_margin="10dp"
             android:text="机器人"/>
          
-        </LinearLayout>
+        </LinearLayout-->
+        
+        <include
+            android:id="@+id/ll_header" 
+            layout="@layout/main_header_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        
+        <com.eebbk.joy.TabIndicator
+            android:id="@+id/ll_indicator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ll_header"
+            android:background="#303030"
+            android:orientation="horizontal" >
+            
+        </com.eebbk.joy.TabIndicator>
     
     <android.support.v4.view.ViewPager
         android:id="@+id/id_pager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/ll_bottom" >
+        android:layout_height="match_parent"
+        android:layout_below="@id/ll_indicator"
+         >
         </android.support.v4.view.ViewPager>
     
      

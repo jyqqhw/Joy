@@ -44,7 +44,7 @@ public class ViewPagerAdapter extends FragmentPagerAdapter{
 		NewsFragment news = new NewsFragment();
 		JokeFragment joke = new JokeFragment(context);
 		PictureFragment picture = new PictureFragment(context);
-		RobotFragment robot = new RobotFragment();
+		RobotFragment robot = new RobotFragment(context);
 		lists.add(news);
 		lists.add(joke);
 		lists.add(picture);

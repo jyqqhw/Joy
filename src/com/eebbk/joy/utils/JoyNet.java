@@ -42,6 +42,23 @@ public class JoyNet {
 	}
 	
 	
+	public static  byte[] fromUrlToBytes(String url) {
+		byte[] bytes = null;
+		HttpClient client = new DefaultHttpClient();
+		HttpGet httpGet = new HttpGet(url);
+		try {
+			HttpResponse response = client.execute(httpGet);
+			HttpEntity entity = response.getEntity();
+			bytes = EntityUtils.toByteArray(entity);
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return bytes;
+	}
+	
+	
 	/**
 	 * 笑话模块的url组装器,用于请求指定页的数据
 	 * 
@@ -49,13 +66,30 @@ public class JoyNet {
 	 * @param page 请求页码
 	 * @return 完整的url地址
 	 */
-//	private  String mJokeUrl = "http://japi.juhe.cn/joke/content/text.from?key="+
-//			JoyConstant.JOKE_KEY+"&page="+mRequestPager+"&pagesize=10";
-	public static String combineCertainPageUrl(String url,int page){
+//	"http://japi.juhe.cn/joke/content/text.from?key="+JoyConstant.JOKE_KEY+"&page="+mRequestPager+"&pagesize=10";
+	public static String combineJokePageUrl(String url,int page){
 		Pattern pattern = Pattern.compile("(page=[1-9]{1,4})");
 		String[] strs = pattern.split(url);
 		String requestUrl = strs[0]+"page="+page+strs[1];
 		L.i("我所请求的页码数为:"+requestUrl);
+		return requestUrl;
+	}
+	
+	
+	/**
+	 * 机器人模块的url组装器,用于请求特定消息的数据回复
+	 * 
+	 * @param url 请求地址
+	 * @param page 请求内容
+	 * @return 完整的url地址
+	 */
+//	http://op.juhe.cn/robot/index?info=你好&key=您申请到的APPKEY;
+	public static String combineRobotMessageUrl(String url,String question){
+		Pattern pattern = Pattern.compile("(info=[\u4e00-\u9fa5]{1,30})");
+//		Pattern pattern = Pattern.compile("(info=[0-9]{1,4})");
+		String[] strs = pattern.split(url);
+		String requestUrl = strs[0]+"info="+question+strs[1];
+		L.i("我所请求的消息url为:"+requestUrl);
 		return requestUrl;
 	}
 	

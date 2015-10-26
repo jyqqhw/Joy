@@ -20,13 +20,14 @@ public class JokeFragment extends BaseFragment implements IXListViewLoadMore, IX
 
 	private XListView mXListView = null;
 	private JokeAdapter mJokeAdapter;
+	private Context context;
 
 	private JokeController mJokeController;
-	private Context context;
 	private boolean isFirstIn = true;
 	private boolean isVisible =false;
 
 	public JokeFragment(Context context) {
+		
 		this.context = context;
 
 		mJokeAdapter = new JokeAdapter(context);
@@ -62,13 +63,13 @@ public class JokeFragment extends BaseFragment implements IXListViewLoadMore, IX
 		// TODO Auto-generated method stub
 		super.onActivityCreated(savedInstanceState);
 
-		initJokeController();
+		initJokeController(context);
 		initXListView();
 
 
 	}
 
-	private void initJokeController() {
+	private void initJokeController(Context context) {
 		mJokeController = new JokeController(context, mJokeListener);
 
 	}

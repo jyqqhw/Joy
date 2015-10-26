@@ -15,8 +15,10 @@
     
     <ImageView
         android:id="@+id/picture_iv_content_show"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        android:layout_gravity="center_horizontal"
         android:layout_marginBottom="6dp"
         android:layout_marginLeft="6dp"
         android:layout_marginRight="6dp"

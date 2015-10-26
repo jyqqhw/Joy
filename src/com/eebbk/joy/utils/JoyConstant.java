@@ -6,7 +6,7 @@ public class JoyConstant {
 	 */
 	private static final String JUHE_JOKE_KEY = "679c82db488ed33b1e7722539f0c4362";
 	
-	private static final String JUHE_ROBOT_KEY = " 86744c33bed567e59910826b65ab68a1";
+	private static final String JUHE_ROBOT_KEY = "86744c33bed567e59910826b65ab68a1";
 	/**
 	 * @param  请求地址及参数
 	 */
