@@ -59,7 +59,7 @@ public class JokeController {
 
 		@Override
 		protected String doInBackground(Integer... params) {
-			String url = JoyNet.combineCertainPageUrl(JoyConstant.JOKE_BASE_URL, params[0]);
+			String url = JoyNet.combineJokePageUrl(JoyConstant.JOKE_BASE_URL, params[0]);
 			return JoyNet.requestJsonFromUrl(url);
 			
 		}

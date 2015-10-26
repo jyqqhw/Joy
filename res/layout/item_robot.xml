@@ -1,16 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#8a3dd6"
+    android:layout_marginTop="3dp"
+    android:layout_marginLeft="3dp"
+    android:layout_marginRight="3dp"
+    android:layout_marginBottom="3dp"
     android:orientation="vertical" >
 
+    <RelativeLayout
+        android:id="@+id/robot_rl_message_right" 
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible"
+        android:gravity="center_vertical">
+        
+        <Button
+        android:id="@+id/robot_btn_head_right"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginRight="3dp"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/ic_launcher" />
+
     <TextView
-        android:id="@+id/robot_tv_content_show"
+        android:id="@+id/robot_tv_content_right"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="3dp"
+        android:layout_toLeftOf="@id/robot_btn_head_right"
+        android:background="@drawable/robot_chat_bg_message"
+        android:padding="5dp"
         android:text="你好！"
-        android:textSize="20dp" />
+        android:textSize="24dp" />
+        
+    </RelativeLayout>
+    
+    
+    <RelativeLayout
+        android:id="@+id/robot_rl_message_left" 
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical">
+        
+        <Button
+        android:id="@+id/robot_btn_head_left"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginLeft="3dp"
+        android:layout_alignParentLeft="true"
+        android:background="@drawable/ic_launcher" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/robot_tv_content_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="30dp"
+        android:layout_toRightOf="@id/robot_btn_head_left"
+        android:background="@drawable/robot_chat_bg_message"
+        android:padding="5dp"
+        android:text="你好！"
+        android:textSize="24dp" />
+        
+    </RelativeLayout>
+    
+    
+
+</RelativeLayout>

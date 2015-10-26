@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#e0e0e0"
+    android:background="#ffffff"
     android:orientation="vertical" >
 
     <me.maxwin.view.XListView
@@ -11,7 +11,8 @@
         android:layout_height="match_parent"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:divider="#e0e0e0"
+        android:divider="#ffffff"
+        android:cacheColorHint="#00000000"
         android:dividerHeight="15dp"
         android:headerDividersEnabled="true"
         android:scrollbars="none" >
