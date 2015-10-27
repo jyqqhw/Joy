@@ -16,22 +16,20 @@ public class DBHelper extends SQLiteOpenHelper
 	@Override
 	public void onCreate(SQLiteDatabase db)
 	{
-		/**
-		 *
-		 */
-//		String sql = "create table tb_newsItem if not exists( _id integer primary key autoincrement , "
-//				+ " title text , link text , date text , imgLink text , content text , newstype integer  );";
 		
 		//笑话的数据库
-		String sql = "create table tb_newsItem if not exists( _id integer primary key autoincrement , "
-				+ " joke_title text , joke_imgLink text , joke_date text ,  joke_type integer  );";
+//		String jokesql = "create table db_joke( _id integer primary key autoincrement , "
+//				+ " joke_title text , joke_imgLink text , joke_date text ,  joke_type integer);";
 		
 		//机器人的数据库
+		String robotsql = "create table db_robot( _id integer primary key autoincrement , "
+				+ " robot_text text , robot_type integer);";
 		
 		//新闻的数据库
 		
 		
-		db.execSQL(sql);
+//		db.execSQL(jokesql);
+		db.execSQL(robotsql);
 	}
 
 	@Override

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.eebbk.joy.R;
+import com.eebbk.joy.dao.RobotDao;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -17,9 +18,11 @@ public class RobotAdapter extends BaseAdapter {
 	
 	private List<RobotInfo> lists = new ArrayList<RobotInfo>();
 	private LayoutInflater mInflater;
+	private RobotDao mRobotDao;
 	
 	public RobotAdapter(Context context){
 		
+		mRobotDao = new RobotDao(context);
 		mInflater = LayoutInflater.from(context);
 		
 	}
@@ -104,14 +107,13 @@ public class RobotAdapter extends BaseAdapter {
 	 * @param text
 	 * @param isMine
 	 */
-	public void add(String text,boolean isMine){
-		RobotInfo info = new RobotInfo();
-		info.text = text;
-		if(isMine){
-			info.isMine = true;
+	public void add(RobotInfo info){
+		if(null == info){
+			return;
 		}
-		
+		mRobotDao.add(info);
 		lists.add(info);
+		
 		notifyDataSetChanged();
 		
 	}
@@ -121,11 +123,11 @@ public class RobotAdapter extends BaseAdapter {
 	 * 
 	 * @param list
 	 */
-	private void setList(List<RobotInfo> list){
-		if(null == list || list.isEmpty()){
-			return;
+	public void getRobotFromDb(){
+		if(null == lists){
+			lists = new ArrayList<RobotInfo>();
 		}
-		lists = list;
+		lists = mRobotDao.getList();
 		notifyDataSetChanged();
 		
 	}

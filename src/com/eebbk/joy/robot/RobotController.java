@@ -67,7 +67,7 @@ public class RobotController {
 				info = new RobotInfo();
 				info.code = object.getString("code");
 				info.text =  object.getString("text");
-				info.isMine = true;
+				info.isMine = false;
 				L.i("bbb","我获得了robot数据:"+info.code +"\t"+info.text+"\t"+info.isMine);
 			}
 		} catch (JSONException e) {

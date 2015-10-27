@@ -65,7 +65,10 @@ public class RobotFragment extends BaseFragment{
 				}
 				mEditInput.setText("");
 				mRobotController.beginAnswerQuestion(text);
-				mRobotAdapter.add(text, true);
+				RobotInfo info = new RobotInfo();
+				info.isMine = true;
+				info.text = text;
+				mRobotAdapter.add(info);
 			}
 		});
 		
@@ -85,10 +88,16 @@ public class RobotFragment extends BaseFragment{
 		@Override
 		public void OnGetMessageSuccess(RobotInfo info) {
 			L.i("bbb","fragment准备更新界面");
-			mRobotAdapter.add(info.text, false);
-			
+			mRobotAdapter.add(info);
 		}
 	};
+
+	@Override
+	public void onStart() {
+		// TODO Auto-generated method stub
+		super.onStart();
+		mRobotAdapter.getRobotFromDb();
+	}
 	
 	
 	

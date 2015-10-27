@@ -36,6 +36,7 @@ public class MainActivity extends FragmentActivity implements OnPageChangeListen
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_main);
 		
+		getWindow().setBackgroundDrawable(null);
 		mTabIndicator = (TabIndicator) findViewById(R.id.ll_indicator);
 		mViewPager = (ViewPager) findViewById(R.id.id_pager);
 		mViewpagerAdapter = new ViewPagerAdapter(this,getSupportFragmentManager());
