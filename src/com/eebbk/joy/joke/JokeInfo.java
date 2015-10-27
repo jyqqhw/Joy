@@ -9,6 +9,8 @@ public class JokeInfo {
 	public String content;
 
 	public String updateTime;
+	
+	public int type = 0;
 
 	public JokeInfo(){
 

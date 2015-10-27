@@ -18,8 +18,8 @@ public class DBHelper extends SQLiteOpenHelper
 	{
 		
 		//笑话的数据库
-//		String jokesql = "create table db_joke( _id integer primary key autoincrement , "
-//				+ " joke_title text , joke_imgLink text , joke_date text ,  joke_type integer);";
+		String jokesql = "create table db_joke( _id integer primary key autoincrement , "
+				+ " joke_title text , joke_imgLink text , joke_date text ,  joke_type integer);";
 		
 		//机器人的数据库
 		String robotsql = "create table db_robot( _id integer primary key autoincrement , "
@@ -28,7 +28,7 @@ public class DBHelper extends SQLiteOpenHelper
 		//新闻的数据库
 		
 		
-//		db.execSQL(jokesql);
+		db.execSQL(jokesql);
 		db.execSQL(robotsql);
 	}
 

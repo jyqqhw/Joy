@@ -14,6 +14,8 @@ public class PictureInfo {
 	
 	public String updateTime;
 	
+	public int type = 1;
+	
 	public PictureInfo(){
 		title = "你不会找到路,除非你敢于迷路";
 		image = null;

@@ -28,7 +28,7 @@
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="4dp"
         android:layout_weight="1"
-        android:text="大白菜客户端"
+        android:text="大懒猫客户端"
         android:textColor="#ffffff"
         android:textSize="21sp"
         android:textStyle="bold" >

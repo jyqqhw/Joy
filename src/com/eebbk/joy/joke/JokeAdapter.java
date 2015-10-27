@@ -13,6 +13,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.eebbk.joy.R;
+import com.eebbk.joy.dao.JokeDao;
+import com.eebbk.joy.utils.JoyConstant;
+import com.eebbk.joy.utils.L;
 
 public class JokeAdapter extends BaseAdapter{
 
@@ -20,15 +23,26 @@ public class JokeAdapter extends BaseAdapter{
 	
 	private LayoutInflater inflater;
 	private JokeInfo mJokeInfo;
+	private JokeDao mJokeDao;
 
 
 	public JokeAdapter(Context context) {
 
 		inflater = LayoutInflater.from(context);
-		for(int i=0;i<10;i++){
-			JokeInfo jokeInfo = new JokeInfo();
-			mLists.add(jokeInfo);
-		}
+		L.i("bbb","youBUG");
+			mJokeDao = new JokeDao(context);
+			List<JokeInfo> infos = mJokeDao.getJokeList();
+			if(null != infos && infos.size() > 0 ){
+				mLists.addAll(infos);
+			}
+			
+			
+			for(JokeInfo info:mLists){
+				L.i("bbb",info.content);
+			}
+			
+		L.i("bbb","youBUG1");
+		
 		
 	}
 
@@ -101,8 +115,16 @@ public class JokeAdapter extends BaseAdapter{
 	}
 	
 	public void setList(List<JokeInfo> lists){
+		if(null == lists || lists.isEmpty()){
+			return;
+		}
+		
 		 mLists = lists;
+		 
 		 notifyDataSetChanged();
+		 
+		 mJokeDao.deleteAll(JoyConstant.JOKE_TYPE_JOKE);
+		 mJokeDao.addAllJoke(lists);
 	}
 	
 	

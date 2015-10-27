@@ -23,7 +23,7 @@ public class RobotDao
 	{
 		String sql = "insert into db_robot (robot_text,robot_type) values(?,?) ;";
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
-		db.execSQL(sql,new Object[] {info.text, info.isMine});
+		db.execSQL(sql,new Object[] {info.text, info.isMine?1:0});
 		db.close();
 	}
 
@@ -51,7 +51,7 @@ public class RobotDao
 		List<RobotInfo> infos = new ArrayList<RobotInfo>();
 		try
 		{
-			String sql = "select * from db_robot";
+			String sql = "select robot_text,robot_type from db_robot";
 			SQLiteDatabase db = dbHelper.getReadableDatabase();
 			Cursor c = db.rawQuery(sql, null);
 

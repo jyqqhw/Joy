@@ -100,6 +100,7 @@ public class JokeFragment extends BaseFragment implements IXListViewLoadMore, IX
 		public void OnRefreshSuccess(List<JokeInfo> lists) {
 			// TODO Auto-generated method stub
 			if(lists != null && lists.size()>0){
+				mJokeAdapter.clear();
 				mJokeAdapter.setList(lists);
 			}
 			

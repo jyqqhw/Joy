@@ -15,8 +15,16 @@ public class JoyConstant {
 	
 	public static final String ROBOT_BASE_URL = "http://op.juhe.cn/robot/index?info=你好&key="+JUHE_ROBOT_KEY;
 	
+	/**
+	 * @param 刷新和加载的常量
+	 */
 	public static final int XLIST_STATUS_REFRESH = 0;
 	public static final int XLIST_STATUS_LOADMORE = 1;
 	
+	/**
+	 * @param  判断是笑话还是趣图的常量
+	 */
+	public static final int JOKE_TYPE_JOKE = 0;
+	public static final int JOKE_TYPE_PICTURE = 1;
 	
 }

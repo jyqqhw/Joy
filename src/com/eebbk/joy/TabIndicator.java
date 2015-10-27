@@ -18,7 +18,7 @@ public class TabIndicator extends LinearLayout {
 	private Context context;
 	
 	private OnIndicatorItemClickListener mListener;
-	private String[] mTitle = {"新闻","笑话","趣图","智能机器人"};
+	private String[] mTitle = {"新闻","笑话","趣图","智能小七"};
 	
 	private boolean isFirstIn = true;
 	
