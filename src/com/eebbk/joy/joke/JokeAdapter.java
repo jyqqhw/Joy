@@ -136,7 +136,11 @@ public class JokeAdapter extends BaseAdapter{
 		
 		List<JokeInfo> infos = mJokeDao.getJokeList();
 		if(null != infos && infos.size() > 0 ){
-			mLists.addAll(infos);
+			if( infos.size() >= mLists.size() ){
+				mLists.clear();
+				mLists.addAll(infos);
+			}
+			
 		}
 		
 		

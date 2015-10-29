@@ -7,11 +7,16 @@ public class JoyConstant {
 	private static final String JUHE_JOKE_KEY = "679c82db488ed33b1e7722539f0c4362";
 	
 	private static final String JUHE_ROBOT_KEY = "86744c33bed567e59910826b65ab68a1";
+	
+	public static final int JOKE_PAGE_SIZE = 10;
+	public static final int PICTURE_PAGE_SIZE = 6;
+	
+	
 	/**
 	 * @param  请求地址及参数
 	 */
-	public static final String JOKE_BASE_URL = "http://japi.juhe.cn/joke/content/text.from?key="+JUHE_JOKE_KEY+"&page=1&pagesize=10";
-	public static final String PICTURE_BASE_URL = "http://japi.juhe.cn/joke/img/text.from?key="+JUHE_JOKE_KEY+"&page=1&pagesize=6";
+	public static final String JOKE_BASE_URL = "http://japi.juhe.cn/joke/content/text.from?key="+JUHE_JOKE_KEY+"&page=1&pagesize="+JOKE_PAGE_SIZE;
+	public static final String PICTURE_BASE_URL = "http://japi.juhe.cn/joke/img/text.from?key="+JUHE_JOKE_KEY+"&page=1&pagesize="+PICTURE_PAGE_SIZE;
 	
 	public static final String ROBOT_BASE_URL = "http://op.juhe.cn/robot/index?info=你好&key="+JUHE_ROBOT_KEY;
 	
@@ -26,5 +31,8 @@ public class JoyConstant {
 	 */
 	public static final int JOKE_TYPE_JOKE = 0;
 	public static final int JOKE_TYPE_PICTURE = 1;
+	
+	
+	
 	
 }

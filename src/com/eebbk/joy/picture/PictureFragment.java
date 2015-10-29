@@ -66,22 +66,22 @@ public class PictureFragment extends BaseFragment implements IXListViewRefreshLi
 	}
 
 
-	@Override
-	public void setUserVisibleHint(boolean isVisibleToUser) {
-		// TODO Auto-generated method stub
-		super.setUserVisibleHint(isVisibleToUser);
-		isVisible = isVisibleToUser;
-		if(isVisible){
-			if(isFirstIn){
-				mXListView.startRefresh();
-				isFirstIn = false;
-			}else{
-				mXListView.NotRefreshAtBegin();
-			}
-
-		}
-
-	}
+//	@Override
+//	public void setUserVisibleHint(boolean isVisibleToUser) {
+//		// TODO Auto-generated method stub
+//		super.setUserVisibleHint(isVisibleToUser);
+//		isVisible = isVisibleToUser;
+//		if(isVisible){
+//			if(isFirstIn){
+//				mXListView.startRefresh();
+//				isFirstIn = false;
+//			}else{
+//				mXListView.NotRefreshAtBegin();
+//			}
+//
+//		}
+//
+//	}
 
 
 	@Override

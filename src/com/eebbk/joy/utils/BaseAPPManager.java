@@ -1,9 +1,11 @@
 package com.eebbk.joy.utils;
 
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
+import com.nostra13.universalimageloader.core.download.BaseImageDownloader;
 
 import android.app.Application;
 import android.util.Log;
@@ -16,11 +18,13 @@ public class BaseAPPManager extends Application {
 		if(!isInitImageLoaderInstance || !ImageLoader.getInstance().isInited()){
 			ImageLoaderConfiguration configuration = new ImageLoaderConfiguration.Builder( getApplicationContext() )
 				.threadPriority( Thread.NORM_PRIORITY - 2 )
+				
 				// ¥≈≈Ãª∫¥Ê20£Õ
 				.discCacheSize( 20 * 1024 * 1024 )
 				.discCacheFileNameGenerator( new Md5FileNameGenerator() )
 				.tasksProcessingOrder( QueueProcessingType.LIFO )
 				.memoryCacheSize( 6 * 1024 * 1024 )
+				.memoryCacheExtraOptions(480, 640)
 				.denyCacheImageMultipleSizesInMemory()
 				.build();
 			ImageLoader.getInstance().init( configuration );

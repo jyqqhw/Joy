@@ -38,10 +38,8 @@ public class JokeController extends BaseController{
 	}
 
 
-	public void doRefreshOrLoad(int flag,boolean isNetOn){
-		if(!isNetOn){
-			return;
-		}
+	public void doRefreshOrLoad(int flag){
+		
 		switch (flag) {
 		case JoyConstant.XLIST_STATUS_REFRESH:
 			new MyAsyncTask().execute(mRequestPager = 1);

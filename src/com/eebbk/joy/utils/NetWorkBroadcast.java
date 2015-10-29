@@ -21,7 +21,7 @@ public class NetWorkBroadcast {
 		@Override
 		public void onReceive(Context context, Intent intent) {
 			
-			onReceiveIntent(context,intent);
+			onReceiveIntent(context);
 			
 		}
 	};
@@ -59,12 +59,13 @@ public class NetWorkBroadcast {
 	
 	
 	
-	public void onReceiveIntent(Context context, Intent intent){
+	public void onReceiveIntent(Context context){
 		
-		String action = intent.getAction();
-		if(action.equals(ConnectivityManager.CONNECTIVITY_ACTION)){
 			
-			NetworkInfo networkInfo = intent.getParcelableExtra(ConnectivityManager.EXTRA_NETWORK_INFO);
+//			NetworkInfo networkInfo = intent.getParcelableExtra(ConnectivityManager.EXTRA_NETWORK_INFO);
+			
+			ConnectivityManager cm = (ConnectivityManager) context.getSystemService(context.CONNECTIVITY_SERVICE);
+			NetworkInfo networkInfo = cm.getActiveNetworkInfo();
 			
 			if(null == networkInfo){
 				netState = 0;
@@ -89,7 +90,6 @@ public class NetWorkBroadcast {
 			
 			mNetListener.onBroadcast(isNetConnected);
 			
-		}
 		
 		
 	}

@@ -22,6 +22,7 @@ import com.eebbk.giflibrary.GifImageView;
 import com.eebbk.joy.R;
 import com.eebbk.joy.picture.PictureController.OnPopWindowShowGif;
 import com.eebbk.joy.utils.L;
+import com.nostra13.universalimageloader.cache.disc.DiscCacheAware;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -57,9 +58,12 @@ public class PictureAdapter extends BaseAdapter {
 		this.context = context;
 		inflater = LayoutInflater.from(context);
 
-		for( int i=0 ; i<10 ; i++ ){
-			lists.add(new PictureInfo());
-		}
+//		for( int i=0 ; i<10 ; i++ ){
+//			lists.add(new PictureInfo());
+//		}
+		DiscCacheAware dca = ImageLoader.getInstance().getDiscCache();
+		
+		
 		
 		mController = new PictureController(mGifListener);
 		
@@ -72,9 +76,14 @@ public class PictureAdapter extends BaseAdapter {
 //				.build();
 		
 		options = new DisplayImageOptions.Builder().showStubImage(R.drawable.picture_no_picture)
-		.showImageForEmptyUri(R.drawable.picture_no_picture).showImageOnFail(R.drawable.picture_no_picture).cacheInMemory()
-		.cacheOnDisc().imageScaleType(ImageScaleType.IN_SAMPLE_POWER_OF_2).bitmapConfig(Bitmap.Config.RGB_565)
-		.displayer(new FadeInBitmapDisplayer(300)).build();
+		.showImageForEmptyUri(R.drawable.picture_no_picture)
+		.showImageOnFail(R.drawable.picture_no_picture)
+		.cacheInMemory()
+		.cacheOnDisc()
+		.imageScaleType(ImageScaleType.IN_SAMPLE_POWER_OF_2)
+		.bitmapConfig(Bitmap.Config.RGB_565)
+		.displayer(new FadeInBitmapDisplayer(300))
+		.build();
 
 	}
 
@@ -132,6 +141,7 @@ public class PictureAdapter extends BaseAdapter {
 		holder.updateTime.setText(info.updateTime);
 		if(null != info.imageUrl){
 			mImageLoader.displayImage(info.imageUrl, holder.image, options);
+			
 		}
 
 

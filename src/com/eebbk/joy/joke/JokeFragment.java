@@ -90,8 +90,7 @@ public class JokeFragment extends BaseFragment implements IXListViewLoadMore, IX
 	@Override
 	public void onRefresh() {
 		if(isNetOn){
-			Log.i("aaa", "isNetOn的值:"+isNetOn);
-			mJokeController.doRefreshOrLoad(JoyConstant.XLIST_STATUS_REFRESH,isNetOn);
+			mJokeController.doRefreshOrLoad(JoyConstant.XLIST_STATUS_REFRESH);
 		}else{
 			mJokeAdapter.loadLocalJokes();
 			mXListView.stopRefresh();
@@ -102,7 +101,7 @@ public class JokeFragment extends BaseFragment implements IXListViewLoadMore, IX
 	@Override
 	public void onLoadMore() {
 		if(isNetOn){
-			mJokeController.doRefreshOrLoad(JoyConstant.XLIST_STATUS_LOADMORE,isNetOn);
+			mJokeController.doRefreshOrLoad(JoyConstant.XLIST_STATUS_LOADMORE);
 		}else{
 			T.shortTime(context,"加载更多失败,请连接网络!");
 			mXListView.stopLoadMore();

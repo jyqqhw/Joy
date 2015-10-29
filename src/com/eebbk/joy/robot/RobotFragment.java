@@ -60,6 +60,7 @@ public class RobotFragment extends BaseFragment{
 			@Override
 			public void onClick(View v) {
 				String text = mEditInput.getText().toString().trim();
+				mEditInput.setText("");
 				if(TextUtils.isEmpty(text)){
 					T.shortTime(context, "消息不能为空哦!");
 					return;
@@ -69,7 +70,7 @@ public class RobotFragment extends BaseFragment{
 					T.shortTime(context,"发送消息失败,请连接网络!");
 					return;
 				}
-				mEditInput.setText("");
+				
 				mRobotController.beginAnswerQuestion(text);
 				RobotInfo info = new RobotInfo();
 				info.isMine = true;
