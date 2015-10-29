@@ -15,6 +15,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.eebbk.joy.base.BaseController;
 import com.eebbk.joy.utils.JoyConstant;
 import com.eebbk.joy.utils.JoyNet;
 import com.eebbk.joy.utils.L;
@@ -23,7 +24,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
-public class JokeController {
+public class JokeController extends BaseController{
 
 	private JokeListener mJokeListener;
 	private int mLocationId = 1;
@@ -37,8 +38,10 @@ public class JokeController {
 	}
 
 
-	public void doRefreshOrLoad(int flag){
-		
+	public void doRefreshOrLoad(int flag,boolean isNetOn){
+		if(!isNetOn){
+			return;
+		}
 		switch (flag) {
 		case JoyConstant.XLIST_STATUS_REFRESH:
 			new MyAsyncTask().execute(mRequestPager = 1);
@@ -105,7 +108,11 @@ public class JokeController {
 		return infos;
 	}
 	
-	
+	@Override
+	protected void onNetStateChanged(boolean isNetOn) {
+		// TODO Auto-generated method stub
+		super.onNetStateChanged(isNetOn);
+	}
 	
 	
 

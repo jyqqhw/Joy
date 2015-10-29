@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.eebbk.joy.R;
 import com.eebbk.joy.base.BaseFragment;
@@ -63,6 +64,11 @@ public class RobotFragment extends BaseFragment{
 					T.shortTime(context, "消息不能为空哦!");
 					return;
 				}
+				
+				if(!isNetOn){
+					T.shortTime(context,"发送消息失败,请连接网络!");
+					return;
+				}
 				mEditInput.setText("");
 				mRobotController.beginAnswerQuestion(text);
 				RobotInfo info = new RobotInfo();
@@ -99,7 +105,13 @@ public class RobotFragment extends BaseFragment{
 		mRobotAdapter.getRobotFromDb();
 	}
 	
-	
+	@Override
+	protected void onNetStateChanged(boolean isNetOn) {
+		// TODO Auto-generated method stub
+		super.onNetStateChanged(isNetOn);
+		
+//		mRobotController.setNetState(isNetOn);
+	}
 	
 	
 	

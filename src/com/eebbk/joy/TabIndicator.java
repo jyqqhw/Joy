@@ -84,7 +84,6 @@ public class TabIndicator extends LinearLayout {
 				if(null != mListener){
 					mListener.onClick(v,index);
 				}
-				L.i("bbb","wo±»µã»÷ÁË");
 				
 				setItemSelected(index);
 				

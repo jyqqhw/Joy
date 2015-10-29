@@ -7,13 +7,16 @@ import me.maxwin.view.IXListViewRefreshListener;
 import me.maxwin.view.XListView;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.eebbk.joy.R;
 import com.eebbk.joy.base.BaseFragment;
 import com.eebbk.joy.utils.JoyConstant;
+import com.eebbk.joy.utils.T;
 
 public class JokeFragment extends BaseFragment implements IXListViewLoadMore, IXListViewRefreshListener{
 
@@ -86,12 +89,25 @@ public class JokeFragment extends BaseFragment implements IXListViewLoadMore, IX
 
 	@Override
 	public void onRefresh() {
-		mJokeController.doRefreshOrLoad(JoyConstant.XLIST_STATUS_REFRESH);
+		if(isNetOn){
+			Log.i("aaa", "isNetOn的值:"+isNetOn);
+			mJokeController.doRefreshOrLoad(JoyConstant.XLIST_STATUS_REFRESH,isNetOn);
+		}else{
+			mJokeAdapter.loadLocalJokes();
+			mXListView.stopRefresh();
+		}
+		
 	}
 
 	@Override
 	public void onLoadMore() {
-		mJokeController.doRefreshOrLoad(JoyConstant.XLIST_STATUS_LOADMORE);
+		if(isNetOn){
+			mJokeController.doRefreshOrLoad(JoyConstant.XLIST_STATUS_LOADMORE,isNetOn);
+		}else{
+			T.shortTime(context,"加载更多失败,请连接网络!");
+			mXListView.stopLoadMore();
+		}
+		
 	}
 
 	private JokeListener mJokeListener = new JokeListener() {
@@ -131,6 +147,16 @@ public class JokeFragment extends BaseFragment implements IXListViewLoadMore, IX
 		}
 
 	};
+
+	@Override
+	protected void onNetStateChanged(boolean isNetOn) {
+		// TODO Auto-generated method stub
+		super.onNetStateChanged(isNetOn);
+		
+//		mJokeController.setNetState(isNetOn);
+	}
+	
+	
 
 
 

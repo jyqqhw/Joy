@@ -7,11 +7,12 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.text.TextUtils;
 
+import com.eebbk.joy.base.BaseController;
 import com.eebbk.joy.utils.JoyConstant;
 import com.eebbk.joy.utils.JoyNet;
 import com.eebbk.joy.utils.L;
 
-public class RobotController {
+public class RobotController extends BaseController{
 
 	private RobotListener mListener;
 
@@ -78,7 +79,12 @@ public class RobotController {
 
 	}
 
-
+	
+	@Override
+	protected void onNetStateChanged(boolean isNetOn) {
+		// TODO Auto-generated method stub
+		super.onNetStateChanged(isNetOn);
+	}
 
 
 }

@@ -64,15 +64,16 @@ public class PictureAdapter extends BaseAdapter {
 		mController = new PictureController(mGifListener);
 		
 		mImageLoader = ImageLoader.getInstance();
-		mImageLoader.init(ImageLoaderConfiguration.createDefault(context));
+//		mImageLoader.init(ImageLoaderConfiguration.createDefault(context));
+		
 //		options = new DisplayImageOptions.Builder().showStubImage(R.drawable.ic_launcher)
 //				.showImageForEmptyUri(R.drawable.ic_launcher).showImageOnFail(R.drawable.ic_launcher).cacheInMemory()
 //				.cacheOnDisc().displayer(new RoundedBitmapDisplayer(20)).displayer(new FadeInBitmapDisplayer(300))
 //				.build();
 		
-		options = new DisplayImageOptions.Builder().showStubImage(R.drawable.ic_launcher)
-		.showImageForEmptyUri(R.drawable.ic_launcher).showImageOnFail(R.drawable.ic_launcher).cacheInMemory()
-		.cacheOnDisc().imageScaleType(ImageScaleType.EXACTLY).bitmapConfig(Bitmap.Config.RGB_565)
+		options = new DisplayImageOptions.Builder().showStubImage(R.drawable.picture_no_picture)
+		.showImageForEmptyUri(R.drawable.picture_no_picture).showImageOnFail(R.drawable.picture_no_picture).cacheInMemory()
+		.cacheOnDisc().imageScaleType(ImageScaleType.IN_SAMPLE_POWER_OF_2).bitmapConfig(Bitmap.Config.RGB_565)
 		.displayer(new FadeInBitmapDisplayer(300)).build();
 
 	}

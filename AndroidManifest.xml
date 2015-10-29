@@ -12,12 +12,13 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"  />
     
     <application
+        android:name="com.eebbk.joy.utils.BaseAPPManager"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".MainActivity"
+            android:name=".JoyActivity"
             android:label="@string/app_name"
             android:windowSoftInputMode="adjustResize|stateHidden" >
             <intent-filter>

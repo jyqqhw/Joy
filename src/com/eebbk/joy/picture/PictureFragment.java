@@ -21,10 +21,11 @@ import com.eebbk.joy.R;
 import com.eebbk.joy.base.BaseFragment;
 import com.eebbk.joy.utils.JoyConstant;
 import com.eebbk.joy.utils.L;
+import com.eebbk.joy.utils.T;
 
 public class PictureFragment extends BaseFragment implements IXListViewRefreshListener, IXListViewLoadMore {
 
-	private XListView mXlistView;
+	private XListView mXListView;
 
 	private boolean isFirstIn = true;
 	private PictureAdapter mPicAdapter;
@@ -42,7 +43,7 @@ public class PictureFragment extends BaseFragment implements IXListViewRefreshLi
 				mPicAdapter.clear();
 				mPicAdapter.set(infos);
 			}
-			mXlistView.stopRefresh();
+			mXListView.stopRefresh();
 			
 		}
 		
@@ -52,7 +53,7 @@ public class PictureFragment extends BaseFragment implements IXListViewRefreshLi
 			if(!infos.isEmpty() || null != infos ){
 				mPicAdapter.add(infos);
 			}
-			mXlistView.stopLoadMore();
+			mXListView.stopLoadMore();
 			
 		}
 	};
@@ -65,22 +66,22 @@ public class PictureFragment extends BaseFragment implements IXListViewRefreshLi
 	}
 
 
-//	@Override
-//	public void setUserVisibleHint(boolean isVisibleToUser) {
-//		// TODO Auto-generated method stub
-//		super.setUserVisibleHint(isVisibleToUser);
-//		isVisible = isVisibleToUser;
-//		if(isVisible){
-//			if(isFirstIn){
-//				mXlistView.startRefresh();
-//				isFirstIn = false;
-//			}else{
-//				mXlistView.NotRefreshAtBegin();
-//			}
-//
-//		}
-//
-//	}
+	@Override
+	public void setUserVisibleHint(boolean isVisibleToUser) {
+		// TODO Auto-generated method stub
+		super.setUserVisibleHint(isVisibleToUser);
+		isVisible = isVisibleToUser;
+		if(isVisible){
+			if(isFirstIn){
+				mXListView.startRefresh();
+				isFirstIn = false;
+			}else{
+				mXListView.NotRefreshAtBegin();
+			}
+
+		}
+
+	}
 
 
 	@Override
@@ -108,19 +109,19 @@ public class PictureFragment extends BaseFragment implements IXListViewRefreshLi
 
 
 	void initXListView(){
-		mXlistView = (XListView) getView().findViewById(R.id.xlv_picture_main_show);
+		mXListView = (XListView) getView().findViewById(R.id.xlv_picture_main_show);
 		mPicAdapter  = new PictureAdapter(context);
-		mXlistView.setAdapter(mPicAdapter);
+		mXListView.setAdapter(mPicAdapter);
 
-		mXlistView.setPullRefreshEnable(this);
-		mXlistView.setPullLoadEnable(this);
-		mXlistView.setRefreshTime("2015-10-23");
+		mXListView.setPullRefreshEnable(this);
+		mXListView.setPullLoadEnable(this);
+		mXListView.setRefreshTime("2015-10-23");
 
 		if(isFirstIn){
-			mXlistView.startRefresh();
+			mXListView.startRefresh();
 			isFirstIn = false;
 		}else{
-			mXlistView.NotRefreshAtBegin();
+			mXListView.NotRefreshAtBegin();
 		}
 
 	}
@@ -130,13 +131,34 @@ public class PictureFragment extends BaseFragment implements IXListViewRefreshLi
 
 	@Override
 	public void onLoadMore() {
-		mPicController.doRefreshOrLoad(JoyConstant.XLIST_STATUS_LOADMORE);
+		if(isNetOn){
+			mPicController.doRefreshOrLoad(JoyConstant.XLIST_STATUS_LOADMORE,isNetOn);
+		}else{
+			T.shortTime(context,"加载更多失败,请连接网络!");
+			mXListView.stopLoadMore();
+		}
+		
 
 	}
 
 	@Override
 	public void onRefresh() {
-		mPicController.doRefreshOrLoad(JoyConstant.XLIST_STATUS_REFRESH);		
+		if(isNetOn){
+			mPicController.doRefreshOrLoad(JoyConstant.XLIST_STATUS_REFRESH,isNetOn);		
+		}else{
+			mXListView.stopRefresh();
+		}
+		
 	}
+	
+	
+	@Override
+	protected void onNetStateChanged(boolean isNetOn) {
+		// TODO Auto-generated method stub
+		super.onNetStateChanged(isNetOn);
+		
+//		mPicController.setNetState(isNetOn);
+	}
+	
 	
 }

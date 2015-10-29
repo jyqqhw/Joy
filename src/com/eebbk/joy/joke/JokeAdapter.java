@@ -31,15 +31,15 @@ public class JokeAdapter extends BaseAdapter{
 		inflater = LayoutInflater.from(context);
 		L.i("bbb","youBUG");
 			mJokeDao = new JokeDao(context);
-			List<JokeInfo> infos = mJokeDao.getJokeList();
-			if(null != infos && infos.size() > 0 ){
-				mLists.addAll(infos);
-			}
-			
-			
-			for(JokeInfo info:mLists){
-				L.i("bbb",info.content);
-			}
+//			List<JokeInfo> infos = mJokeDao.getJokeList();
+//			if(null != infos && infos.size() > 0 ){
+//				mLists.addAll(infos);
+//			}
+//			
+//			
+//			for(JokeInfo info:mLists){
+//				L.i("bbb",info.content);
+//			}
 			
 		L.i("bbb","youBUG1");
 		
@@ -79,10 +79,14 @@ public class JokeAdapter extends BaseAdapter{
 		}else{
 			holder = (Holder) convertView.getTag();
 		}
+		if(null != mLists && mLists.size() > 0 ){
+			mJokeInfo = mLists.get(position);
+			holder.content.setText("\t\t"+mJokeInfo.content);
+			holder.updatetime.setText(mJokeInfo.updateTime);
+		}else{
+			
+		}
 		
-		mJokeInfo = mLists.get(position);
-		holder.content.setText("\t\t"+mJokeInfo.content);
-		holder.updatetime.setText(mJokeInfo.updateTime);
 
 		return convertView;
 
@@ -125,6 +129,23 @@ public class JokeAdapter extends BaseAdapter{
 		 
 		 mJokeDao.deleteAll(JoyConstant.JOKE_TYPE_JOKE);
 		 mJokeDao.addAllJoke(lists);
+	}
+	
+	
+	public void loadLocalJokes(){
+		
+		List<JokeInfo> infos = mJokeDao.getJokeList();
+		if(null != infos && infos.size() > 0 ){
+			mLists.addAll(infos);
+		}
+		
+		
+		for(JokeInfo info:mLists){
+			L.i("bbb",info.content);
+		}
+		
+		notifyDataSetChanged();
+		
 	}
 	
 	

@@ -15,6 +15,7 @@ import org.json.JSONObject;
 
 import com.eebbk.giflibrary.GifImageView;
 import com.eebbk.joy.R;
+import com.eebbk.joy.base.BaseController;
 import com.eebbk.joy.utils.JoyConstant;
 import com.eebbk.joy.utils.JoyNet;
 import com.eebbk.joy.utils.L;
@@ -28,27 +29,29 @@ import android.view.View.OnTouchListener;
 import android.widget.PopupWindow;
 import android.widget.LinearLayout.LayoutParams;
 
-public class PictureController {
+public class PictureController extends BaseController{
 
 	private PictureListener picListener;
 	private int mRequestPager = 1;
 	private View mView;
 	private OnPopWindowShowGif gifListener;
-	
+
 
 	public PictureController(Context context,PictureListener pictureListener){
 
 		this.picListener = pictureListener;
 
 	}
-	
-	
+
+
 	public PictureController(OnPopWindowShowGif gifListener) {
 		this.gifListener = gifListener;
 	}
 
-	public void doRefreshOrLoad(int flag){
-
+	public void doRefreshOrLoad(int flag,boolean isNetOn){
+		if(!isNetOn){
+			return;
+		}
 		switch (flag) {
 		case JoyConstant.XLIST_STATUS_REFRESH:
 			new MyAsyncTask().execute(mRequestPager = 1);
@@ -77,7 +80,7 @@ public class PictureController {
 		@Override
 		protected void onPostExecute(String result) {
 			// TODO Auto-generated method stub
-			List<PictureInfo> infos = parseJsonToJokeInfoList(result);
+			List<PictureInfo> infos = parseJsonToPicInfoList(result);
 			if(1 == mRequestPager){
 				picListener.OnRefreshSuccess(infos);
 			}else{
@@ -86,34 +89,34 @@ public class PictureController {
 		}
 
 	}
-	
+
 	class GifTask extends AsyncTask<String, Integer, byte[]>{
 
 		@Override
 		protected byte[] doInBackground(String... params) {
-			
+
 			L.i("bbb","我在AsyncTask得到了url,它的值为："+params[0]);
 			byte[] bytes = JoyNet.fromUrlToBytes(params[0]);
-			
+
 			return bytes;
 		}
-		
+
 		@Override
 		protected void onPostExecute(byte[] result) {
 			// TODO Auto-generated method stub
 			super.onPostExecute(result);
-			
+
 			if(null != result){
 				gifListener.showGif(result);
 			}
-			
+
 		}
-	
+
 	}
 
 
 	//将json数据解析成趣图信息
-	public  List<PictureInfo> parseJsonToJokeInfoList(String json){
+	public  List<PictureInfo> parseJsonToPicInfoList(String json){
 		List<PictureInfo> infos = new ArrayList<PictureInfo>();
 
 		try {
@@ -141,16 +144,22 @@ public class PictureController {
 	}
 	
 	
-public void startGetPicture(View view,String url){
-		
-		new GifTask().execute(url);
-		
+	@Override
+	protected void onNetStateChanged(boolean isNetOn) {
+		// TODO Auto-generated method stub
+		super.onNetStateChanged(isNetOn);
 	}
-	
+
+	public void startGetPicture(View view,String url){
+
+		new GifTask().execute(url);
+
+	}
+
 	public interface OnPopWindowShowGif{
 		void showGif(byte[] bytes);
 	}
-	
+
 
 
 

@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.eebbk.joy.TabIndicator.OnIndicatorItemClickListener;
+import com.eebbk.joy.base.BaseActivity;
+import com.eebbk.joy.base.BaseController;
+import com.eebbk.joy.base.BaseFragment;
 import com.eebbk.joy.joke.JokeFragment;
 import com.eebbk.joy.news.NewsFragment;
 
@@ -23,7 +26,7 @@ import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 
 
-public class MainActivity extends FragmentActivity implements OnPageChangeListener{
+public class JoyActivity extends BaseActivity implements OnPageChangeListener{
 
 	private ViewPager mViewPager ;
 	private ViewPagerAdapter mViewpagerAdapter ;
@@ -36,11 +39,14 @@ public class MainActivity extends FragmentActivity implements OnPageChangeListen
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_main);
 		
+		
+		
 		mTabIndicator = (TabIndicator) findViewById(R.id.ll_indicator);
 		mViewPager = (ViewPager) findViewById(R.id.id_pager);
 		mViewpagerAdapter = new ViewPagerAdapter(this,getSupportFragmentManager());
 		mViewPager.setAdapter(mViewpagerAdapter);
 		mViewPager.setCurrentItem(0);
+		
 		
 		
 		mViewPager.setOnPageChangeListener(this);
@@ -72,6 +78,26 @@ public class MainActivity extends FragmentActivity implements OnPageChangeListen
 	public void onPageSelected(int arg0) {
 		mTabIndicator.setItemSelected(arg0);
 
+	}
+	
+	
+	
+	@Override
+	public void onNetStateChanged(boolean isNetOn) {
+		// TODO Auto-generated method stub
+		super.onNetStateChanged(isNetOn);
+		
+		mViewpagerAdapter.notifyNetChanged(isNetOn);
+		
+	}
+	
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+		isNetOn = false;
+		
+		
 	}
 
 
